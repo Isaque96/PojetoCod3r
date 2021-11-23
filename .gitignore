@@ -3,7 +3,7 @@
 backend/DS_Store
 backend/node_modules
 backend/envcl
-
+backend/.env
 frontend/node_modules
 frontend/DS_Store
 frontend/dist
