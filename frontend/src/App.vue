@@ -24,7 +24,7 @@ export default {
 	computed: mapState(['isMenuVisible', 'user']),
 	data: function() {
 		return {
-			validatingToken: false
+			validatingToken: true
 		}
 	},
 	methods: {
@@ -45,16 +45,20 @@ export default {
 
 			if(res.data) {
 				this.$store.commit('setUser', userData);
+				
+				if (this.$mq === 'xs' || this.$mq === 'sm') {
+					this.$store.commit('toggleMenu', false);
+				}
 			} else {
 				localStorage.removeItem(userKey);
 				this.$router.push({ name: 'auth' });
 			}
 
 			this.validatingToken = false;
-		},
-		created() {
-			this.validateToken();
 		}
+	},
+	created() {
+		this.validateToken();
 	}
 }
 </script>
